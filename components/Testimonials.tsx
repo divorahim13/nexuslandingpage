@@ -54,7 +54,7 @@ const Testimonials: React.FC = () => {
       ></div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-12">
-        <span className="text-acid font-mono text-xs tracking-widest block mb-12">[003_TRANSMISSIONS]</span>
+        <span className="text-acid font-mono text-xs tracking-widest block mb-12">[004_TRANSMISSIONS]</span>
         
         <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-white/10 border border-white/10">
           
