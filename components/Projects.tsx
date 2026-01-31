@@ -65,11 +65,13 @@ const Projects: React.FC = () => {
           <div className="w-24 h-1 bg-acid"></div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {/* Added items-stretch to grid to ensure all cards are same height */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch">
           {projects.map((project) => (
-            <div key={project.id} className="project-card group relative bg-surface border border-white/10 overflow-hidden hover:border-acid/50 transition-colors duration-500">
-              {/* Image Container with Glitch Effect on Hover */}
-              <div className="relative h-64 overflow-hidden bg-gray-900">
+            // Added flex flex-col h-full to make card fill height
+            <div key={project.id} className="project-card group relative bg-surface border border-white/10 overflow-hidden hover:border-acid/50 transition-colors duration-500 flex flex-col h-full">
+              {/* Image Container with Glitch Effect on Hover - flex-shrink-0 to prevent shrinking */}
+              <div className="relative h-64 overflow-hidden bg-gray-900 flex-shrink-0">
                 <div className="absolute inset-0 bg-acid/20 z-10 opacity-0 group-hover:opacity-100 transition-opacity mix-blend-overlay"></div>
                 <img 
                   src={project.image} 
@@ -92,8 +94,8 @@ const Projects: React.FC = () => {
                 </div>
               </div>
 
-              {/* Content */}
-              <div className="p-8">
+              {/* Content - flex-grow ensures this section fills remaining space */}
+              <div className="p-8 flex flex-col flex-grow">
                 <div className="flex justify-between items-start mb-4">
                   <div>
                     <span className="text-xs font-mono text-gray-500 block mb-1">{project.category.toUpperCase()}</span>
@@ -102,14 +104,17 @@ const Projects: React.FC = () => {
                   <span className="font-mono text-xs text-gray-600">v.{project.id}.0</span>
                 </div>
                 
-                <p className="text-gray-400 text-sm leading-relaxed mb-6 font-mono">
+                {/* flex-grow on paragraph pushes the button down */}
+                <p className="text-gray-400 text-sm leading-relaxed mb-6 font-mono flex-grow">
                   {project.description}
                 </p>
 
-                <a href={project.link} className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-white hover:text-acid transition-colors group/link">
-                  <span>View Protocol</span>
-                  <svg className="w-3 h-3 transform group-hover/link:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="square" strokeLinejoin="miter" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
-                </a>
+                <div className="mt-auto">
+                  <a href={project.link} className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-white hover:text-acid transition-colors group/link">
+                    <span>View Protocol</span>
+                    <svg className="w-3 h-3 transform group-hover/link:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="square" strokeLinejoin="miter" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                  </a>
+                </div>
               </div>
             </div>
           ))}
